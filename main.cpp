@@ -230,7 +230,7 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 	}	
 
 	//fix wallhack
-	if (wallhackm == 1) //&& pscdesc[3].ByteWidth == 480
+	if (wallhackm == 1|| wallhacki == 1|| wallhackw == 1|| wallhacka == 1) //&& pscdesc[3].ByteWidth == 480
 	if ((IndexCount == 18963 && veWidth == 54720764) || //awoken map1
 		(IndexCount == 22494 && veWidth == 61246792) || //blood covenant
 		(IndexCount == 11178 && veWidth == 62215376) || //blood run
