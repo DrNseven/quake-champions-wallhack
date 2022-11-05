@@ -229,6 +229,18 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}	
 
+	//ctf flag
+	if(IndexCount == 16002 && veWidth == 339528)
+	{
+		if (wallhacki == 1)
+			pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+
+		phookD3D11DrawIndexed(pContext, IndexCount, StartIndexLocation, BaseVertexLocation);
+
+		if (wallhacki == 1)
+			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
+	}
+
 	//fix wallhack
 	if (wallhackm == 1|| wallhacki == 1|| wallhackw == 1|| wallhacka == 1) //&& pscdesc[3].ByteWidth == 480
 	if ((IndexCount == 18963 && veWidth == 54720764) || //awoken map1
@@ -255,11 +267,11 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 
 	/*
 	//logger
-	if (countnum == IndexCount / 1000)
+	if (countnum == IndexCount / 100)
 		if (GetAsyncKeyState(VK_END) & 1)//log key
 			Log("Stride == %d && IndexCount == %d && veWidth == %d", Stride, IndexCount, veWidth);
 
-	if (countnum == IndexCount / 1000)
+	if (countnum == IndexCount / 100)
 	{
 		return;
 	}
@@ -296,7 +308,7 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 		veBuffer2->Release();
 		veBuffer2 = NULL;
 	}
-
+	
 	//wallhack items(health, armor, powerups)
 	if((Stride2 == 8 && IndexCountPerInstance == 948 && veWidth2 == 16824)|| //mega health
 		(Stride2 == 8 && IndexCountPerInstance == 4266 && veWidth2 == 47208) || // heavy armor
@@ -352,7 +364,7 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 		if (wallhacka == 1)
 			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}
-
+	
 	/*
 	//logger
 	if (countnum == veWidth2 / 1000)//1000

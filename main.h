@@ -62,7 +62,9 @@ void SaveCfg()
 	ofstream fout;
 	fout.open(GetDirFile("qcwh.ini"), ios::trunc);
 	fout << "Wallhack " << wallhackm << endl;
-	//fout << "Wallhack " << wallhacki << endl;
+	fout << "Wallhack " << wallhacki << endl;
+	fout << "Wallhack " << wallhackw << endl;
+	fout << "Wallhack " << wallhacka << endl;
 	fout.close();
 }
 
@@ -72,6 +74,8 @@ void LoadCfg()
 	string Word = "";
 	fin.open(GetDirFile("qcwh.ini"), ifstream::in);
 	fin >> Word >> wallhackm;
-	//fin >> Word >> wallhacki;
+	fin >> Word >> wallhacki;
+	fin >> Word >> wallhackw;
+	fin >> Word >> wallhacka;
 	fin.close();
 }
