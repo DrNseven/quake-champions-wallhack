@@ -203,42 +203,40 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 	}
 
 	//the models
-	if(veWidth == 33019776||//blazkowicz
-		veWidth == 32416480||//ranger
-		veWidth == 37471908||//scalebearer
-		veWidth == 36695844||//visor
-		veWidth == 34416600||//anarki
-		veWidth == 27186138||//nyx
-		veWidth == 49464832||//sorlag
-		veWidth == 37147024||//clutch
-		veWidth == 40442608||//galena
-		veWidth == 36916404||//slash
-		veWidth == 30639408||//doom slayer
-		veWidth == 35216464||//keel
-		veWidth == 65903852||//strogg
-		veWidth == 36858108||//death knight
-		veWidth == 27980754||//athena
-		veWidth == 43159020)//eisen
+	if(wallhackm == 1)
+	if(veWidth == 33019776|| //blazkowicz
+		veWidth == 32416480|| //ranger
+		veWidth == 37471908|| //scalebearer
+		veWidth == 36695844|| //visor
+		veWidth == 34416600|| //anarki
+		veWidth == 27186138|| //nyx
+		veWidth == 49464832|| //sorlag
+		veWidth == 37147024|| //clutch
+		veWidth == 40442608|| //galena
+		veWidth == 36916404|| //slash
+		veWidth == 30639408|| //doom slayer
+		veWidth == 35216464|| //keel
+		veWidth == 65903852|| //strogg
+		veWidth == 36858108|| //death knight
+		veWidth == 27980754|| //athena
+		veWidth == 43159020) //eisen
 	{
-		if (wallhackm == 1)
-			pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
 		phookD3D11DrawIndexed(pContext, IndexCount, StartIndexLocation, BaseVertexLocation);
 
-		if (wallhackm == 1)
-			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
+		pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}	
 
 	//ctf flag
+	if (wallhacki == 1)
 	if(IndexCount == 16002 && veWidth == 339528)
 	{
-		if (wallhacki == 1)
-			pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
 		phookD3D11DrawIndexed(pContext, IndexCount, StartIndexLocation, BaseVertexLocation);
 
-		if (wallhacki == 1)
-			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
+		pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}
 
 	//fix wallhack
@@ -251,7 +249,7 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 		(IndexCount == 60762 && veWidth == 66982464) || //citadel
 		(IndexCount == 19824 && veWidth == 66088608) || //corrupted keep
 		(IndexCount == 4986 && veWidth == 67003608) || //deep embrace
-		//values not needed for map exile
+		(IndexCount == 648 && veWidth == 36378192) || //exile
 		(IndexCount == 11265 && veWidth == 23886072) || //insomnia
 		(IndexCount == 13548 && veWidth == 59518192) || //lockbox
 		(IndexCount == 35826 && veWidth == 62887880) || //ruins of sarnath
@@ -267,11 +265,11 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 
 	/*
 	//logger
-	if (countnum == IndexCount / 100)
+	if (countnum == IndexCount / 10)
 		if (GetAsyncKeyState(VK_END) & 1)//log key
 			Log("Stride == %d && IndexCount == %d && veWidth == %d", Stride, IndexCount, veWidth);
 
-	if (countnum == IndexCount / 100)
+	if (countnum == IndexCount / 10)
 	{
 		return;
 	}
@@ -310,26 +308,26 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 	}
 	
 	//wallhack items(health, armor, powerups)
+	if (wallhacki == 1)
 	if((Stride2 == 8 && IndexCountPerInstance == 948 && veWidth2 == 16824)|| //mega health
-		(Stride2 == 8 && IndexCountPerInstance == 4266 && veWidth2 == 47208) || // heavy armor
-		(Stride2 == 8 && IndexCountPerInstance == 2184 && veWidth2 == 25824) || // light armour
-		(Stride2 == 8 && IndexCountPerInstance == 972 && veWidth2 == 30672) || // small health inside
+		(Stride2 == 8 && IndexCountPerInstance == 4266 && veWidth2 == 47208) || //heavy armor
+		(Stride2 == 8 && IndexCountPerInstance == 2184 && veWidth2 == 25824) || //light armour
+		(Stride2 == 8 && IndexCountPerInstance == 972 && veWidth2 == 30672) || //small health inside
 		(Stride2 == 8 && IndexCountPerInstance == 2280 && veWidth2 == 30672) || //small health bubble
-		(Stride2 == 8 && IndexCountPerInstance == 1008 && veWidth2 == 24352) || // quad damage
-		(Stride2 == 8 && IndexCountPerInstance == 1020 && veWidth2 == 21984) || // battle suit
-		(Stride2 == 8 && IndexCountPerInstance == 720 && veWidth2 == 99700) || // hourglass
+		(Stride2 == 8 && IndexCountPerInstance == 1008 && veWidth2 == 24352) || //quad damage
+		(Stride2 == 8 && IndexCountPerInstance == 1020 && veWidth2 == 21984) || //battle suit
+		(Stride2 == 8 && IndexCountPerInstance == 720 && veWidth2 == 99700) || //hourglass
 		(Stride2 == 8 && IndexCountPerInstance == 2550 && veWidth2 == 40232))  //armor shards
 	{
-		if (wallhacki == 1)
-			pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
 		phookD3D11DrawIndexedInstanced(pContext, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
 
-		if (wallhacki == 1)
-			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
+		pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}
 
 	//wallhack weapons
+	if (wallhackw == 1)
 	if((Stride2 == 8 && IndexCountPerInstance == 4275 && veWidth2 == 109816) || // rocket launcher
 	(Stride2 == 8 && IndexCountPerInstance == 3000 && veWidth2 == 102432) || // railgun
 	(Stride2 == 8 && IndexCountPerInstance == 924 && veWidth2 == 63920) || // super shotgun 
@@ -338,31 +336,28 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 	(Stride2 == 8 && IndexCountPerInstance == 882 && veWidth2 == 88856) || // lightning gun
 	(Stride2 == 8 && IndexCountPerInstance == 8232 && veWidth2 == 141616))  // tri-bolt
 	{
-		if (wallhackw == 1)
-			pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
 		phookD3D11DrawIndexedInstanced(pContext, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
 
-		if (wallhackw == 1)
-			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
+		pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}
 	
 	//wallhack ammo
-	if((Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 97240) || // railgun ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 76024) || // tri-bolt ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96936) || // rocket ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96864) || // lg ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96808) || // nailgun ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96904) || // shotgun ammo
+	if (wallhacka == 1)
+	if((Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 97240) || //railgun ammo
+	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 76024) || //tri-bolt ammo
+	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96936) || //rocket ammo
+	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96864) || //lg ammo
+	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96808) || //nailgun ammo
+	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96904) || //shotgun ammo
 	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96912)) //heavy machinegun ammo
 	{
-		if (wallhacka == 1)
-			pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
 		phookD3D11DrawIndexedInstanced(pContext, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
 
-		if (wallhacka == 1)
-			pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
+		pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 	}
 	
 	/*
