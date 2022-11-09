@@ -309,15 +309,15 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 	
 	//wallhack items(health, armor, powerups)
 	if (wallhacki == 1)
-	if((Stride2 == 8 && IndexCountPerInstance == 948 && veWidth2 == 16824)|| //mega health
-		(Stride2 == 8 && IndexCountPerInstance == 4266 && veWidth2 == 47208) || //heavy armor
-		(Stride2 == 8 && IndexCountPerInstance == 2184 && veWidth2 == 25824) || //light armour
-		(Stride2 == 8 && IndexCountPerInstance == 972 && veWidth2 == 30672) || //small health inside
-		(Stride2 == 8 && IndexCountPerInstance == 2280 && veWidth2 == 30672) || //small health bubble
-		(Stride2 == 8 && IndexCountPerInstance == 1008 && veWidth2 == 24352) || //quad damage
-		(Stride2 == 8 && IndexCountPerInstance == 1020 && veWidth2 == 21984) || //battle suit
-		(Stride2 == 8 && IndexCountPerInstance == 720 && veWidth2 == 99700) || //hourglass
-		(Stride2 == 8 && IndexCountPerInstance == 2550 && veWidth2 == 40232))  //armor shards
+	if((IndexCountPerInstance == 948 && veWidth2 == 16824)|| //mega health
+		(IndexCountPerInstance == 4266 && veWidth2 == 47208) || //heavy armor
+		(IndexCountPerInstance == 2184 && veWidth2 == 25824) || //light armour
+		(IndexCountPerInstance == 972 && veWidth2 == 30672) || //small health inside
+		(IndexCountPerInstance == 2280 && veWidth2 == 30672) || //small health bubble
+		(IndexCountPerInstance == 1008 && veWidth2 == 24352) || //quad damage
+		(IndexCountPerInstance == 1020 && veWidth2 == 21984) || //battle suit
+		(IndexCountPerInstance == 2592 && veWidth2 == 99700) || //hourglass
+		(IndexCountPerInstance == 2550 && veWidth2 == 40232))  //armor shards
 	{
 		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
@@ -328,13 +328,16 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 
 	//wallhack weapons
 	if (wallhackw == 1)
-	if((Stride2 == 8 && IndexCountPerInstance == 4275 && veWidth2 == 109816) || // rocket launcher
-	(Stride2 == 8 && IndexCountPerInstance == 3000 && veWidth2 == 102432) || // railgun
-	(Stride2 == 8 && IndexCountPerInstance == 924 && veWidth2 == 63920) || // super shotgun 
-	(Stride2 == 8 && IndexCountPerInstance == 828 && veWidth2 == 88960) || // heavy machinegun 
-	(Stride2 == 8 && IndexCountPerInstance == 7212 && veWidth2 == 93608) || // super nailgun
-	(Stride2 == 8 && IndexCountPerInstance == 882 && veWidth2 == 88856) || // lightning gun
-	(Stride2 == 8 && IndexCountPerInstance == 8232 && veWidth2 == 141616))  // tri-bolt
+	if((IndexCountPerInstance == 4275 && veWidth2 == 109816) || //rocket launcher
+	(IndexCountPerInstance == 1308 && veWidth2 == 102432) || //railgun
+	(IndexCountPerInstance == 3000 && veWidth2 == 102432) || //railgun part 2
+	(IndexCountPerInstance == 2079 && veWidth2 == 63920) || //super shotgun 
+	(IndexCountPerInstance == 2706 && veWidth2 == 88960) || //heavy machinegun 
+	(IndexCountPerInstance == 828 && veWidth2 == 88960) || //heavy machinegun part 2
+	(IndexCountPerInstance == 7212 && veWidth2 == 93608) || //super nailgun
+	(IndexCountPerInstance == 2673 && veWidth2 == 88856) || //lightning gun
+	//(IndexCountPerInstance == 3639 && veWidth2 == 88856) || //lightning gun glow effect
+	(IndexCountPerInstance == 8232 && veWidth2 == 141616))  //tri-bolt
 	{
 		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
@@ -345,13 +348,13 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 	
 	//wallhack ammo
 	if (wallhacka == 1)
-	if((Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 97240) || //railgun ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 76024) || //tri-bolt ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96936) || //rocket ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96864) || //lg ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96808) || //nailgun ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96904) || //shotgun ammo
-	(Stride2 == 8 && IndexCountPerInstance == 4644 && veWidth2 == 96912)) //heavy machinegun ammo
+	if((IndexCountPerInstance == 4644 && veWidth2 == 97240) || //railgun ammo
+	(IndexCountPerInstance == 4644 && veWidth2 == 76024) || //tri-bolt ammo
+	(IndexCountPerInstance == 4644 && veWidth2 == 96936) || //rocket ammo
+	(IndexCountPerInstance == 4644 && veWidth2 == 96864) || //lg ammo
+	(IndexCountPerInstance == 4644 && veWidth2 == 96808) || //nailgun ammo
+	(IndexCountPerInstance == 4644 && veWidth2 == 96904) || //shotgun ammo
+	(IndexCountPerInstance == 4644 && veWidth2 == 96912)) //heavy machinegun ammo
 	{
 		pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
 
@@ -362,12 +365,15 @@ void __stdcall hookD3D11DrawIndexedInstanced(ID3D11DeviceContext* pContext, UINT
 	
 	/*
 	//logger
-	if (countnum == veWidth2 / 1000)//1000
+	if (countnum == IndexCountPerInstance / 100)//1000
 		if (GetAsyncKeyState(VK_END) & 1)//log key
 			Log("Stride2 == %d && IndexCountPerInstance == %d && veWidth2 == %d", Stride2, IndexCountPerInstance, veWidth2);
 
-	if (countnum == veWidth2 / 1000)//1000
+	if (countnum == IndexCountPerInstance / 100)//1000
 	{
+		//pContext->RSSetState(DEPTHBIASState_FALSE); //wh on
+		//phookD3D11DrawIndexedInstanced(pContext, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
+		//pContext->RSSetState(DEPTHBIASState_TRUE); //wh off
 		return;
 	}
 
